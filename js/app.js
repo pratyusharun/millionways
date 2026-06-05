@@ -266,9 +266,16 @@ ctc:
 document.getElementById("ctc").value,
 
 state:
-document.getElementById("state").value
+document.getElementById("state").value,
+
+token:
+document.querySelector(
+'[name="cf-turnstile-response"]'
+)?.value
 
 };
+
+console.log(payload);
 
 try{
 
