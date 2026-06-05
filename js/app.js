@@ -306,6 +306,7 @@ document
 .getElementById("successMessage")
 .style.display = "block";
 
+document.getElementById("careerForm").reset();
 window.turnstile?.reset();
 
 }else{
