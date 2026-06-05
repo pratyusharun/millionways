@@ -275,8 +275,6 @@ document.querySelector(
 
 };
 
-console.log(payload);
-
 try{
 
 const response =
