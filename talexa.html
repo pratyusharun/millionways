@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Talexa — millionways' AI Recruitment Intelligence Platform</title>
+  <meta name="description" content="Talexa is millionways' AI recruitment platform. It screens, scores, and shortlists candidates over WhatsApp — parsing resumes, scoring fit, and scheduling interviews so recruiters spend time on people, not follow-ups." />
+  <link rel="icon" type="image/svg+xml" href="/talexa-icon.svg" />
+  <link rel="canonical" href="https://millionways.in/talexa" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="millionways" />
+  <meta property="og:title" content="Talexa — millionways' AI Recruitment Intelligence Platform" />
+  <meta property="og:description" content="AI that screens, scores, and shortlists candidates over WhatsApp. A millionways product." />
+  <meta property="og:url" content="https://millionways.in/talexa" />
+  <meta property="og:image" content="https://millionways.in/talexa-og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Talexa — millionways' AI Recruitment Intelligence Platform" />
+  <meta name="twitter:description" content="AI that screens, scores, and shortlists candidates over WhatsApp. A millionways product." />
+  <meta name="twitter:image" content="https://millionways.in/talexa-og.png" />
+
+  <!-- Match millionways.in typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      /* millionways.in light theme */
+      --bg: #fbfbfd;
+      --bg-2: #f5f5f7;
+      --surface: #ffffff;
+      --text: #1d1d1f;
+      --muted: #6e6e73;
+      --dim: #86868b;
+      --line: rgba(0, 0, 0, 0.09);
+      --line-2: rgba(0, 0, 0, 0.14);
+      /* accents */
+      --blue: #0071e3;        /* millionways primary */
+      --blue-hover: #0077ed;
+      --cyan: #22c3e6;        /* Talexa gradient nod */
+      --green: #25d366;       /* WhatsApp / secondary */
+      --grad: linear-gradient(120deg, #0071e3 0%, #22c3e6 100%);
+      --radius: 20px;
+      --shadow-card: 0 2px 10px -4px rgba(0, 0, 0, 0.12);
+      --shadow-shot: 0 40px 80px -36px rgba(20, 40, 90, 0.4);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    ::selection { background: rgba(0, 113, 227, 0.18); }
+
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--blue);
+      outline-offset: 3px;
+      border-radius: 8px;
+    }
+
+    .wrap { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    .grad-text {
+      background: var(--grad);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+
+    /* ---------- Buttons (pill, Apple/millionways style) ---------- */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      font-size: 0.95rem; font-weight: 500;
+      padding: 11px 22px; border-radius: 980px;
+      border: 1px solid transparent; cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .btn svg { width: 17px; height: 17px; }
+    .btn-primary { background: var(--blue); color: #fff; }
+    .btn-primary:hover { background: var(--blue-hover); transform: translateY(-1px); box-shadow: 0 12px 28px -14px rgba(0,113,227,0.7); }
+    .btn-ghost { background: transparent; color: var(--blue); border-color: var(--line-2); }
+    .btn-ghost:hover { background: rgba(0,113,227,0.06); }
+    .btn-lg { padding: 15px 34px; font-size: 1.05rem; }
+
+    /* ---------- Brand marks ---------- */
+    .tlx-badge {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px; border-radius: 10px;
+      background: var(--grad);
+      box-shadow: 0 6px 16px -8px rgba(0,113,227,0.8);
+      flex-shrink: 0;
+    }
+    .tlx-badge svg { width: 21px; height: 21px; display: block; }
+    .tlx-wordmark { font-size: 1.24rem; font-weight: 700; letter-spacing: -0.02em; }
+
+    .mw-mark { display: inline-flex; align-items: center; gap: 9px; font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em; }
+    .mw-dot { width: 11px; height: 11px; border-radius: 50%; background: linear-gradient(120deg, var(--blue), var(--green)); }
+
+    /* ---------- Hero ---------- */
+    .hero { position: relative; padding: 84px 0 60px; text-align: center; overflow: hidden; }
+    .hero .glow {
+      position: absolute; left: 50%; top: -160px; transform: translateX(-50%);
+      width: 900px; height: 520px; pointer-events: none;
+      background: radial-gradient(ellipse at center, rgba(0,113,227,0.14), rgba(34,195,230,0.05) 45%, transparent 70%);
+    }
+    .hero-inner { position: relative; max-width: 800px; margin: 0 auto; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 9px;
+      font-size: 0.8rem; font-weight: 500; color: var(--muted);
+      background: var(--surface); border: 1px solid var(--line);
+      border-radius: 999px; padding: 7px 15px;
+      box-shadow: var(--shadow-card);
+    }
+    .pill .tlx-badge { width: 20px; height: 20px; border-radius: 6px; }
+    .pill .tlx-badge svg { width: 12px; height: 12px; }
+    .hero h1 {
+      font-size: clamp(2.6rem, 5.5vw + 0.6rem, 4.6rem);
+      font-weight: 700; letter-spacing: -0.03em; line-height: 1.05;
+      margin: 26px 0 0;
+    }
+    .hero .lede { color: var(--muted); font-size: clamp(1.05rem, 0.6vw + 0.95rem, 1.28rem); max-width: 640px; margin: 22px auto 0; }
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: 34px; }
+
+    /* ---------- Browser-frame screenshot ---------- */
+    .shot {
+      border-radius: 14px; overflow: hidden;
+      border: 1px solid var(--line-2);
+      background: #0b0b0f;
+      box-shadow: var(--shadow-shot);
+    }
+    .shot-bar {
+      display: flex; align-items: center; gap: 7px;
+      padding: 11px 14px; background: #17171c; border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .shot-bar i { width: 11px; height: 11px; border-radius: 50%; display: block; }
+    .shot-bar i:nth-child(1){ background:#ff5f57; } .shot-bar i:nth-child(2){ background:#febc2e; } .shot-bar i:nth-child(3){ background:#28c840; }
+    .shot-bar .url { margin-left: 12px; font-size: 0.72rem; color: #7d7d87; font-weight: 500; }
+    .shot img { display: block; width: 100%; height: auto; }
+    .shot-fallback {
+      display: block; width: 100%; aspect-ratio: 16 / 9;
+      background:
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0 12px, transparent 12px 24px),
+        #101014;
+      color: #55555f; font-size: 0.85rem;
+      display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px;
+    }
+
+    .hero-shot { margin: 56px auto 0; max-width: 1000px; }
+
+    /* ---------- Product tour (alternating rows) ---------- */
+    section.block { padding: 90px 0; }
+    section.block.alt { background: var(--bg-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .sec-head { max-width: 660px; margin: 0 auto; text-align: center; }
+    .sec-eyebrow { font-size: 0.8rem; letter-spacing: 0.02em; text-transform: uppercase; color: var(--blue); font-weight: 600; }
+    .sec-head h2 { font-size: clamp(1.9rem, 2.6vw + 0.7rem, 2.9rem); font-weight: 700; letter-spacing: -0.025em; line-height: 1.1; margin: 12px 0 0; }
+    .sec-head p { color: var(--muted); font-size: 1.1rem; margin: 16px 0 0; }
+
+    .row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center;
+      margin-top: 72px;
+    }
+    .row.rev .row-text { order: 2; }
+    .row-text .tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.78rem; font-weight: 600; color: var(--blue);
+      background: rgba(0,113,227,0.08); border: 1px solid rgba(0,113,227,0.16);
+      border-radius: 999px; padding: 5px 12px;
+    }
+    .row-text .tag.green { color: #128c3e; background: rgba(37,211,102,0.1); border-color: rgba(37,211,102,0.28); }
+    .row-text h3 { font-size: clamp(1.5rem, 1.6vw + 0.9rem, 2rem); font-weight: 700; letter-spacing: -0.02em; margin: 16px 0 0; line-height: 1.15; }
+    .row-text p { color: var(--muted); font-size: 1.05rem; margin: 14px 0 0; }
+    .row-text ul { list-style: none; padding: 0; margin: 20px 0 0; display: flex; flex-direction: column; gap: 11px; }
+    .row-text li { display: flex; gap: 11px; align-items: flex-start; font-size: 0.98rem; color: var(--text); }
+    .row-text li svg { width: 19px; height: 19px; color: var(--blue); flex-shrink: 0; margin-top: 2px; }
+
+    /* ---------- Data / scope note ---------- */
+    .scope { margin: 64px auto 0; max-width: 900px; background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--blue); border-radius: 16px; padding: 26px 28px; box-shadow: var(--shadow-card); }
+    .scope h3 { margin: 0; font-size: 1.08rem; font-weight: 700; }
+    .scope p { color: var(--muted); font-size: 0.97rem; margin: 10px 0 0; }
+    .scope a { color: var(--blue); font-weight: 600; }
+
+    /* ---------- CTA band ---------- */
+    .cta-band { position: relative; overflow: hidden; text-align: center; padding: 88px 0;
+      background: linear-gradient(135deg, #0071e3 0%, #22c3e6 100%); color: #fff; }
+    .cta-band::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 100% at 50% 0%, rgba(255,255,255,0.18), transparent 60%); pointer-events: none; }
+    .cta-band h2 { position: relative; font-size: clamp(2rem, 3vw + 0.8rem, 3.1rem); font-weight: 700; letter-spacing: -0.03em; margin: 0 auto; max-width: 720px; line-height: 1.1; }
+    .cta-band p { position: relative; font-size: 1.12rem; margin: 18px auto 0; max-width: 540px; color: rgba(255,255,255,0.9); }
+    .cta-band .btn { position: relative; margin-top: 32px; background: #fff; color: var(--blue); }
+    .cta-band .btn:hover { background: #f2f6ff; transform: translateY(-1px); }
+
+    /* ---------- Stats ---------- */
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; }
+    .stat { text-align: center; }
+    .stat .num { font-size: clamp(2.2rem, 3vw, 3rem); font-weight: 700; letter-spacing: -0.02em; }
+    .stat .lbl { color: var(--muted); font-size: 0.92rem; margin-top: 6px; }
+    .stats-note { text-align: center; color: var(--dim); font-size: 0.8rem; margin-top: 34px; font-style: italic; }
+
+    /* ---------- About ---------- */
+    .about-inner { max-width: 720px; margin: 0 auto; text-align: center; }
+    .about-inner p { color: var(--muted); font-size: 1.12rem; margin: 18px 0 0; }
+    .about-inner p strong { color: var(--text); font-weight: 600; }
+
+    /* ---------- Footer ---------- */
+    footer { border-top: 1px solid var(--line); padding: 58px 0 40px; background: var(--bg-2); }
+    .foot-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 40px; }
+    .foot-brand p { color: var(--muted); font-size: 0.92rem; max-width: 320px; margin: 15px 0 0; }
+    .foot-col h4 { font-size: 0.9rem; font-weight: 700; margin: 0 0 4px; }
+    .foot-col ul { list-style: none; padding: 0; margin: 14px 0 0; display: flex; flex-direction: column; gap: 12px; }
+    .foot-col a { color: var(--muted); font-size: 0.9rem; transition: color 0.2s ease; }
+    .foot-col a:hover { color: var(--text); }
+    .foot-bottom { margin-top: 46px; padding-top: 24px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; color: var(--dim); font-size: 0.86rem; }
+    .foot-bottom a.try-link { color: var(--blue); font-weight: 600; }
+    .foot-bottom a.try-link:hover { text-decoration: underline; }
+
+    /* ---------- Reveal ---------- */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 860px) {
+      .row { grid-template-columns: 1fr; gap: 32px; margin-top: 56px; }
+      .row.rev .row-text { order: 0; }
+      .foot-grid { grid-template-columns: 1fr 1fr; }
+      .foot-brand { grid-column: span 2; }
+    }
+    @media (max-width: 680px) {
+      section.block { padding: 64px 0; }
+      .stats { grid-template-columns: repeat(2, 1fr); gap: 32px 20px; }
+      .foot-grid { grid-template-columns: 1fr; }
+      .foot-brand { grid-column: span 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <a id="top"></a>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <div class="glow" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="hero-inner">
+        <span class="pill">
+          <span class="tlx-badge" aria-hidden="true">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M31 14 H84 V38 H60 V86 H40 V38 H16 V29 Z" fill="#ffffff"/></svg>
+          </span>
+          Talexa · A Million Ways Product
+        </span>
+
+        <h1>AI recruitment that runs on <span class="grad-text">WhatsApp</span>.</h1>
+
+        <p class="lede">
+          Talexa is millionways' AI recruitment intelligence platform. It screens, scores,
+          and shortlists candidates over WhatsApp — autonomously — so your recruiters spend
+          their time on people, not on follow-ups.
+        </p>
+
+        <div class="hero-cta">
+          <a href="https://talexa.millionways.in" class="btn btn-primary btn-lg">
+            Try Talexa
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#tour" class="btn btn-ghost btn-lg">See it in action</a>
+        </div>
+      </div>
+
+      <!-- Hero product shot: Dashboard -->
+      <figure class="hero-shot reveal" style="margin-top:56px">
+        <div class="shot">
+          <div class="shot-bar" aria-hidden="true">
+            <i></i><i></i><i></i>
+            <span class="url">talexa.millionways.in/dashboard</span>
+          </div>
+          <img src="images/dashboard.png" alt="Talexa dashboard showing live recruitment metrics — candidates, interested, qualified, rejected, and CVs received — with a recruitment overview panel." loading="lazy" onerror="this.outerHTML='&lt;div class=&quot;shot-fallback&quot;&gt;Add screenshots/talexa-dashboard.png&lt;/div&gt;'" />
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===================== PRODUCT TOUR ===================== -->
+  <section class="block" id="tour">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-eyebrow">Inside Talexa</span>
+        <h2>An intelligence layer for every stage of hiring</h2>
+        <p>From the first WhatsApp message to a ranked shortlist on your recruiter's desk — see how Talexa runs the first round end to end.</p>
+      </div>
+
+      <!-- Row 1: Convo -->
+      <div class="row reveal">
+        <div class="row-text">
+          <span class="tag green">Live conversation database</span>
+          <h3>Every WhatsApp conversation, updating live</h3>
+          <p>
+            Talexa holds the entire first-round conversation on WhatsApp — asking your questions
+            and understanding replies in Hindi, Hinglish, Marathi, Tamil, English and more.
+          </p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Thousands of candidate threads, searchable in one place</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Collects CVs, CTC, notice period and more, automatically</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> 24/7 — no recruiter in the loop until the shortlist is ready</li>
+          </ul>
+        </div>
+        <figure class="shot">
+          <div class="shot-bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">talexa.millionways.in/convo</span></div>
+          <img src="images/convo.png" alt="Talexa Convo screen — a live database of WhatsApp recruitment conversations with candidates, showing recent messages and timestamps." loading="lazy" onerror="this.outerHTML='&lt;div class=&quot;shot-fallback&quot;&gt;Add screenshots/talexa-convo.png&lt;/div&gt;'" />
+        </figure>
+      </div>
+
+      <!-- Row 2: Candidates (reversed) -->
+      <div class="row rev reveal">
+        <div class="row-text">
+          <span class="tag">Candidate database</span>
+          <h3>Every candidate, scored and searchable</h3>
+          <p>
+            Resumes are parsed the moment they arrive, and every applicant is ranked against your
+            role in real time — so the best matches surface without manual sifting.
+          </p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> CTC, notice period, company and fit captured per candidate</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Filter by status, phone, company or campaign instantly</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> One-click profile view with the full screening history</li>
+          </ul>
+        </div>
+        <figure class="shot">
+          <div class="shot-bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">talexa.millionways.in/candidates</span></div>
+          <img src="images/candidates.png" alt="Talexa Candidates screen — a filterable candidate database table showing phone, location, company, CTC, notice period, status and actions." loading="lazy" onerror="this.outerHTML='&lt;div class=&quot;shot-fallback&quot;&gt;Add screenshots/talexa-candidates.png&lt;/div&gt;'" />
+        </figure>
+      </div>
+
+      <!-- Row 3: Flow builder -->
+      <div class="row reveal">
+        <div class="row-text">
+          <span class="tag">No-code flow builder</span>
+          <h3>Design the screening flow — no code</h3>
+          <p>
+            A visual builder lets you design the whole WhatsApp recruitment journey — questions,
+            capture fields, conditions, and AI decisions — or generate one with AI and launch in minutes.
+          </p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Drag-and-drop nodes: questions, conditions, AI smart decisions</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Branch on the candidate's own answers automatically</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Start from a best-practice template or generate with AI</li>
+          </ul>
+        </div>
+        <figure class="shot">
+          <div class="shot-bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">talexa.millionways.in/campaign-builder</span></div>
+          <img src="images/flow_builder.png" alt="Talexa campaign flow builder — a visual canvas titled Build a Candidate Journey with draggable nodes for intro templates, questions, conditions and AI decisions." loading="lazy" onerror="this.outerHTML='&lt;div class=&quot;shot-fallback&quot;&gt;Add screenshots/talexa-flow-builder.png&lt;/div&gt;'" />
+        </figure>
+      </div>
+
+      <!-- Interview scheduling + data-access transparency (satisfies Google App Identity & Branding) -->
+      <div class="scope reveal">
+        <h3>Interview scheduling &amp; what data Talexa accesses</h3>
+        <p>
+          When a candidate qualifies, Talexa can schedule the interview for you. With your permission,
+          it connects to your <strong style="color:var(--text)">Google Calendar</strong> for one purpose only:
+          to check your availability and create the interview event, so the meeting lands on both calendars
+          without back-and-forth. Talexa does not read, sell, or repurpose your calendar data for anything
+          else, and you can disconnect the integration at any time. See our
+          <a href="https://talexa.millionways.in/privacy.html">Privacy Policy</a> and
+          <a href="https://talexa.millionways.in/terms.html">Terms of Service</a> for the full detail.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MIDDLE CTA BAND ===================== -->
+  <section class="cta-band" aria-labelledby="try-heading">
+    <div class="wrap reveal">
+      <h2 id="try-heading">Ready to hire with intelligence?</h2>
+      <p>See it screen your first candidate in minutes — launch a campaign and get a ranked shortlist by tomorrow.</p>
+      <a href="https://talexa.millionways.in" class="btn btn-lg">
+        Try Talexa
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===================== STATS ===================== -->
+  <section class="block">
+    <div class="wrap">
+      <div class="stats">
+        <div class="stat reveal"><div class="num grad-text">1,000+</div><div class="lbl">Candidates screened</div></div>
+        <div class="stat reveal"><div class="num grad-text">50+</div><div class="lbl">Hiring teams</div></div>
+        <div class="stat reveal"><div class="num grad-text">85%</div><div class="lbl">Match accuracy</div></div>
+        <div class="stat reveal"><div class="num grad-text">15 min</div><div class="lbl">Avg. time to shortlist</div></div>
+      </div>
+      <p class="stats-note">Figures shown are illustrative placeholders — replace with verified metrics before launch.</p>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT MILLIONWAYS ===================== -->
+  <section class="block alt" id="about">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-eyebrow">About</span>
+        <h2>Talexa is built by Million Ways</h2>
+      </div>
+      <div class="about-inner reveal">
+        <p>
+          <strong>Million Ways</strong> connects talent with opportunity across India. <strong>Talexa</strong>
+          is our AI recruitment platform — an intelligence layer that lives on WhatsApp, where candidates
+          already are, and does the screening groundwork so hiring teams focus on the conversations that matter.
+        </p>
+        <p>
+          Talexa is developed, operated, and supported by Million Ways. When you connect Talexa to your
+          Google Calendar or WhatsApp Business account, you're trusting a Million Ways product — and we
+          treat that data accordingly.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer id="contact">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <a href="#top" class="mw-mark" aria-label="millionways home">
+            <span class="mw-dot" aria-hidden="true"></span>
+            <span>Million Ways</span>
+          </a>
+          <p>The team behind Talexa — the AI recruitment intelligence platform that screens, scores, and shortlists candidates over WhatsApp, autonomously.</p>
+        </div>
+        <div class="foot-col">
+          <h4>Talexa</h4>
+          <ul>
+            <li><a href="https://talexa.millionways.in">Try Talexa</a></li>
+            <li><a href="#tour">Product tour</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:consult@millionways.in">consult@millionways.in</a></li>
+            <li><a href="#about">About Million Ways</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>© <span id="year">2026</span> Million Ways. Talexa is a million ways product. All rights reserved.</span>
+        <a href="https://talexa.millionways.in" class="try-link">Try Talexa →</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var reveals = document.querySelectorAll('.reveal');
+    if (reduce || !('IntersectionObserver' in window)) {
+      reveals.forEach(function (el) { el.classList.add('in'); });
+    } else {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { threshold: 0.12 });
+      reveals.forEach(function (el) { io.observe(el); });
+    }
+  </script>
+</body>
+</html>
